@@ -11,15 +11,6 @@ public class Main {
         Vertex<String> taldykorgan = new Vertex<>("Taldykorgan");
         Vertex<String> kokshetau = new Vertex<>("Kokshetau");
         Vertex<String> taraz = new Vertex<>("Taraz");
-        graph.addVertex(astana);
-        graph.addVertex(karaganda);
-        graph.addVertex(balkash);
-        graph.addVertex(almaty);
-        graph.addVertex(pavlodar);
-        graph.addVertex(semey);
-        graph.addVertex(taldykorgan);
-        graph.addVertex(kokshetau);
-        graph.addVertex(taraz);
 
         graph.addEdge(astana, karaganda);
         graph.addEdge(karaganda, balkash);
@@ -28,12 +19,17 @@ public class Main {
         graph.addEdge(almaty, taraz);
         graph.addEdge(almaty, taldykorgan);
         graph.addEdge(taldykorgan, semey);
-        graph.addEdge(astana,pavlodar);
+        graph.addEdge(astana, pavlodar);
         graph.addEdge(pavlodar, semey);
-        graph.addEdge(astana,kokshetau);
+        graph.addEdge(astana, kokshetau);
+        graph.setWeight(astana, kokshetau, 100);
+
+        BreadthFirstSearch<String> bfs = new BreadthFirstSearch<>(graph, astana);
+        System.out.println("BFS Path to Karaganda: " + bfs.pathTo(karaganda));
+
+        DijkstraSearch<String> dijkstra = new DijkstraSearch<>(graph, astana);
+        System.out.println("Dijkstra Path to Karaganda: " + dijkstra.pathTo(karaganda));
 
         graph.printGraph();
-
-
     }
 }
